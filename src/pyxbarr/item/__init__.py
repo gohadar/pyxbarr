@@ -28,7 +28,7 @@ class Item:
     def __init__(
             self,
             text: str,
-            submenu: Optional[list['Item']] = None,
+            children: Optional[list['Item']] = None,
             *,
             key: Optional[str] = None,
             href: Optional[str] = None,
@@ -54,6 +54,7 @@ class Item:
 
         Args:
             text: The text that is displayed.
+            children: The children to add to the item.
             key: A keyboard shortcut to trigger the item.
             href: The URL to open when the item is triggered.
             color: The color of the text, can be color name or hex.
@@ -80,8 +81,11 @@ class Item:
         """
         self.text = text
         self.attributes = {}
-        self.children = submenu or []
+        self.children = []
         self._nesting_level = 0
+
+        if children is not None:
+            self.add_children(children)
 
         kwargs = dict(zip(inspect.getfullargspec(Item.__init__).kwonlyargs, [
             key,

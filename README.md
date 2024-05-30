@@ -33,10 +33,10 @@ plugin = pyxbarr.Plugin(
 ).add_items(
     # Add multiple items to the plugin
     [
-        pyxbarr.Item("World", color="red"),
+        pyxbarr.Item("World", color="red", key="shift+k"),
         pyxbarr.Item("Foo", color="green", alternative=pyxbarr.Item("Bar", color="yellow")),
         # Add item with submenu
-        pyxbarr.Item("Baz", color="purple", submenu=[
+        pyxbarr.Item("Baz", color="purple", children=[
             pyxbarr.Item("Qux"),
             pyxbarr.Item("Quux"),
         ]),
